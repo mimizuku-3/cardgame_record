@@ -25,6 +25,25 @@ class MatchRecordsController < ApplicationController
     end
   end
 
+  def edit
+    @match_record = MatchRecord.find(params[:id])
+    @decks = Deck.order(:name)
+  end
+
+  def update
+    @match_record = MatchRecord.find(params[:id])
+    @match_record.assign_attributes(match_record_params)
+    assign_deck(:my_deck)
+    assign_deck(:opponent_deck)
+
+    if @match_record.save
+      redirect_to match_record_path(@match_record), notice: "戦績を更新しました。"
+    else
+      @decks = Deck.order(:name)
+      render :edit, status: :unprocessable_content
+    end
+  end
+
   private
 
   def match_record_params

@@ -78,4 +78,48 @@ RSpec.describe "MatchRecords", type: :request do
       expect(response).to have_http_status(:unprocessable_content)
     end
   end
+
+  describe "GET /match_records/:id/edit" do
+    it "returns success" do
+      match_record = create(:match_record, my_deck: deck_one, opponent_deck: deck_two)
+      get edit_match_record_path(match_record)
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe "PATCH /match_records/:id" do
+    it "updates the match record with existing decks" do
+      match_record = create(:match_record, my_deck: deck_one, opponent_deck: deck_two, memo: "before")
+
+      patch match_record_path(match_record), params: {
+        match_record: { memo: "after" }
+      }
+
+      expect(response).to redirect_to(match_record_path(match_record))
+      expect(match_record.reload.memo).to eq("after")
+    end
+
+    it "updates the deck when a new deck name is given" do
+      match_record = create(:match_record, my_deck: deck_one, opponent_deck: deck_two)
+
+      expect {
+        patch match_record_path(match_record), params: {
+          match_record: { my_deck_name: "更新後デッキ" }
+        }
+      }.to change(Deck, :count).by(1)
+
+      expect(match_record.reload.my_deck.name).to eq("更新後デッキ")
+    end
+
+    it "does not update the match record without required fields" do
+      match_record = create(:match_record, my_deck: deck_one, opponent_deck: deck_two)
+
+      patch match_record_path(match_record), params: {
+        match_record: { played_on: nil }
+      }
+
+      expect(response).to have_http_status(:unprocessable_content)
+      expect(match_record.reload.played_on).not_to be_nil
+    end
+  end
 end

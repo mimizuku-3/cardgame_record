@@ -2,10 +2,6 @@
 
 <h1>戦績一覧</h1>
 
-<% if notice %>
-  <p class="notice"><%= notice %></p>
-<% end %>
-
 <%= link_to "戦績を登録する", new_match_record_path %>
 
 <table>
@@ -22,6 +18,7 @@
       <th>環境</th>
       <th>集計</th>
       <th>メモ</th>
+      <th></th>
       <th></th>
     </tr>
   </thead>
@@ -40,6 +37,7 @@
         <td><%= match_record.include_in_aggregation_label %></td>
         <td><%= match_record.memo %></td>
         <td><%= link_to "詳細", match_record_path(match_record) %></td>
+        <td><%= link_to "編集", edit_match_record_path(match_record) %></td>
       </tr>
     <% end %>
   </tbody>

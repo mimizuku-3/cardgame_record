@@ -40,6 +40,10 @@ th, td {
   color: #22863a;
 }
 
+.alert {
+  color: #cb2431;
+}
+
 .error-messages {
   color: #cb2431;
   border: 1px solid #cb2431;

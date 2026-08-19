@@ -1,4 +1,4 @@
-<%= form_with model: match_record, url: match_records_path do |form| %>
+<%= form_with model: match_record do |form| %>
   <% if match_record.errors.any? %>
     <div class="error-messages">
       <h2><%= pluralize(match_record.errors.count, "件のエラー") %>があります</h2>
@@ -68,6 +68,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit "登録する" %>
+    <%= form.submit(match_record.persisted? ? "更新する" : "登録する") %>
   </div>
 <% end %>
