@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  played_on: 2026-08-19
+  tournament_name: MyString
+  opponent_name: MyString
+  my_deck: one
+  opponent_deck: two
+  rock_paper_scissors_result: win
+  turn_order: first
+  result: win
+  environment: MyString
+  include_in_aggregation: false
+  memo: MyText
+
+two:
+  played_on: 2026-08-19
+  tournament_name: MyString
+  opponent_name: MyString
+  my_deck: two
+  opponent_deck: one
+  rock_paper_scissors_result: lose
+  turn_order: second
+  result: lose
+  environment: MyString
+  include_in_aggregation: false
+  memo: MyText
