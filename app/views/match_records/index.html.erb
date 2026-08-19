@@ -1,0 +1,44 @@
+<% content_for :title, "戦績一覧" %>
+
+<h1>戦績一覧</h1>
+
+<% if notice %>
+  <p class="notice"><%= notice %></p>
+<% end %>
+
+<%= link_to "戦績を登録する", new_match_record_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>対戦日付</th>
+      <th>大会名</th>
+      <th>対戦相手</th>
+      <th>使用デッキ</th>
+      <th>相手デッキ</th>
+      <th>じゃんけん</th>
+      <th>先後</th>
+      <th>試合結果</th>
+      <th>環境</th>
+      <th>集計</th>
+      <th>メモ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @match_records.each do |match_record| %>
+      <tr>
+        <td><%= match_record.played_on %></td>
+        <td><%= match_record.tournament_name %></td>
+        <td><%= match_record.opponent_name %></td>
+        <td><%= match_record.my_deck.name %></td>
+        <td><%= match_record.opponent_deck.name %></td>
+        <td><%= match_record.rock_paper_scissors_result_label %></td>
+        <td><%= match_record.turn_order_label %></td>
+        <td><%= match_record.result_label %></td>
+        <td><%= match_record.environment %></td>
+        <td><%= match_record.include_in_aggregation_label %></td>
+        <td><%= match_record.memo %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

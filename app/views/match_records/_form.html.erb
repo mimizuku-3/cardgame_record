@@ -1,0 +1,73 @@
+<%= form_with model: match_record, url: match_records_path do |form| %>
+  <% if match_record.errors.any? %>
+    <div class="error-messages">
+      <h2><%= pluralize(match_record.errors.count, "件のエラー") %>があります</h2>
+      <ul>
+        <% match_record.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :played_on, "対戦日付" %>
+    <%= form.date_field :played_on %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tournament_name, "大会名" %>
+    <%= form.text_field :tournament_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :opponent_name, "対戦相手" %>
+    <%= form.text_field :opponent_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :my_deck_id, "使用デッキ" %>
+    <%= form.select :my_deck_id, decks.map { |deck| [ deck.name, deck.id ] }, include_blank: "選択してください" %>
+    <%= text_field_tag "match_record[my_deck_name]", nil, placeholder: "新しいデッキ名(未登録の場合)" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :opponent_deck_id, "相手デッキ" %>
+    <%= form.select :opponent_deck_id, decks.map { |deck| [ deck.name, deck.id ] }, include_blank: "選択してください" %>
+    <%= text_field_tag "match_record[opponent_deck_name]", nil, placeholder: "新しいデッキ名(未登録の場合)" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rock_paper_scissors_result, "じゃんけん" %>
+    <%= form.select :rock_paper_scissors_result, MatchRecord::ROCK_PAPER_SCISSORS_RESULT_LABELS.map { |value, label| [ label, value ] }, include_blank: "選択してください" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :turn_order, "先後" %>
+    <%= form.select :turn_order, MatchRecord::TURN_ORDER_LABELS.map { |value, label| [ label, value ] }, include_blank: "選択してください" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :result, "試合結果" %>
+    <%= form.select :result, MatchRecord::RESULT_LABELS.map { |value, label| [ label, value ] }, include_blank: "選択してください" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :environment, "環境" %>
+    <%= form.text_field :environment %>
+  </div>
+
+  <div class="field">
+    <%= form.label :include_in_aggregation, "集計に含めるか" %>
+    <%= form.select :include_in_aggregation, MatchRecord::INCLUDE_IN_AGGREGATION_LABELS.map { |value, label| [ label, value ] } %>
+  </div>
+
+  <div class="field">
+    <%= form.label :memo, "メモ" %>
+    <%= form.text_area :memo %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "登録する" %>
+  </div>
+<% end %>

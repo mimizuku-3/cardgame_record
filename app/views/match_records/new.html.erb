@@ -1,0 +1,7 @@
+<% content_for :title, "戦績の登録" %>
+
+<h1>戦績の登録</h1>
+
+<%= render "form", match_record: @match_record, decks: @decks %>
+
+<%= link_to "一覧に戻る", match_records_path %>

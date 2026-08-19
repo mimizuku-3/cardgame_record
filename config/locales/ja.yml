@@ -1,0 +1,24 @@
+ja:
+  errors:
+    format: "%{attribute}%{message}"
+  activerecord:
+    errors:
+      messages:
+        blank: "を入力してください"
+        required: "を入力してください"
+        taken: "はすでに存在します"
+    attributes:
+      match_record:
+        played_on: "対戦日付"
+        tournament_name: "大会名"
+        opponent_name: "対戦相手"
+        my_deck: "使用デッキ"
+        opponent_deck: "相手デッキ"
+        rock_paper_scissors_result: "じゃんけん"
+        turn_order: "先後"
+        result: "試合結果"
+        environment: "環境"
+        include_in_aggregation: "集計に含めるか"
+        memo: "メモ"
+      deck:
+        name: "デッキ名"
