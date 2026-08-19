@@ -22,6 +22,7 @@
       <th>環境</th>
       <th>集計</th>
       <th>メモ</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -38,6 +39,7 @@
         <td><%= match_record.environment %></td>
         <td><%= match_record.include_in_aggregation_label %></td>
         <td><%= match_record.memo %></td>
+        <td><%= link_to "詳細", match_record_path(match_record) %></td>
       </tr>
     <% end %>
   </tbody>

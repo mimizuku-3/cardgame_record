@@ -11,6 +11,19 @@ RSpec.describe "MatchRecords", type: :request do
     end
   end
 
+  describe "GET /match_records/:id" do
+    it "returns success" do
+      match_record = create(:match_record, my_deck: deck_one, opponent_deck: deck_two)
+      get match_record_path(match_record)
+      expect(response).to have_http_status(:success)
+    end
+
+    it "returns not found for an unknown id" do
+      get match_record_path(id: -1)
+      expect(response).to have_http_status(:not_found)
+    end
+  end
+
   describe "GET /match_records/new" do
     it "returns success" do
       get new_match_record_path

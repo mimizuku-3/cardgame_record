@@ -1,0 +1,54 @@
+<% content_for :title, "戦績の詳細" %>
+
+<h1>戦績の詳細</h1>
+
+<table class="show-table">
+  <tbody>
+    <tr>
+      <th>対戦日付</th>
+      <td><%= @match_record.played_on %></td>
+    </tr>
+    <tr>
+      <th>大会名</th>
+      <td><%= @match_record.tournament_name %></td>
+    </tr>
+    <tr>
+      <th>対戦相手</th>
+      <td><%= @match_record.opponent_name %></td>
+    </tr>
+    <tr>
+      <th>使用デッキ</th>
+      <td><%= @match_record.my_deck.name %></td>
+    </tr>
+    <tr>
+      <th>相手デッキ</th>
+      <td><%= @match_record.opponent_deck.name %></td>
+    </tr>
+    <tr>
+      <th>じゃんけん</th>
+      <td><%= @match_record.rock_paper_scissors_result_label %></td>
+    </tr>
+    <tr>
+      <th>先後</th>
+      <td><%= @match_record.turn_order_label %></td>
+    </tr>
+    <tr>
+      <th>試合結果</th>
+      <td><%= @match_record.result_label %></td>
+    </tr>
+    <tr>
+      <th>環境</th>
+      <td><%= @match_record.environment %></td>
+    </tr>
+    <tr>
+      <th>集計に含めるか</th>
+      <td><%= @match_record.include_in_aggregation_label %></td>
+    </tr>
+    <tr>
+      <th>メモ</th>
+      <td><%= simple_format(@match_record.memo) %></td>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to "一覧に戻る", match_records_path %>

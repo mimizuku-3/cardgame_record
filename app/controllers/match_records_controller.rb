@@ -3,6 +3,10 @@ class MatchRecordsController < ApplicationController
     @match_records = MatchRecord.includes(:my_deck, :opponent_deck).order(played_on: :desc, id: :desc)
   end
 
+  def show
+    @match_record = MatchRecord.includes(:my_deck, :opponent_deck).find(params[:id])
+  end
+
   def new
     @match_record = MatchRecord.new
     @decks = Deck.order(:name)
