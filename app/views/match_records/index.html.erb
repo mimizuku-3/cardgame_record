@@ -20,6 +20,7 @@
       <th>メモ</th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -38,6 +39,7 @@
         <td><%= match_record.memo %></td>
         <td><%= link_to "詳細", match_record_path(match_record) %></td>
         <td><%= link_to "編集", edit_match_record_path(match_record) %></td>
+        <td><%= button_to "削除", match_record_path(match_record), method: :delete, data: { turbo_confirm: "この戦績を削除しますか?" } %></td>
       </tr>
     <% end %>
   </tbody>

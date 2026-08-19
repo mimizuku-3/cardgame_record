@@ -44,6 +44,12 @@ class MatchRecordsController < ApplicationController
     end
   end
 
+  def destroy
+    @match_record = MatchRecord.find(params[:id])
+    @match_record.destroy
+    redirect_to match_records_path, notice: "戦績を削除しました。"
+  end
+
   private
 
   def match_record_params

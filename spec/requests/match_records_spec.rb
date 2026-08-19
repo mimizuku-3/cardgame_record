@@ -122,4 +122,24 @@ RSpec.describe "MatchRecords", type: :request do
       expect(match_record.reload.played_on).not_to be_nil
     end
   end
+
+  describe "DELETE /match_records/:id" do
+    it "destroys the match record" do
+      match_record = create(:match_record, my_deck: deck_one, opponent_deck: deck_two)
+
+      expect {
+        delete match_record_path(match_record)
+      }.to change(MatchRecord, :count).by(-1)
+
+      expect(response).to redirect_to(match_records_path)
+    end
+
+    it "does not destroy the associated decks" do
+      match_record = create(:match_record, my_deck: deck_one, opponent_deck: deck_two)
+
+      expect {
+        delete match_record_path(match_record)
+      }.not_to change(Deck, :count)
+    end
+  end
 end
