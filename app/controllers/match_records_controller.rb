@@ -17,7 +17,7 @@ class MatchRecordsController < ApplicationController
       redirect_to match_records_path, notice: "戦績を登録しました。"
     else
       @decks = Deck.order(:name)
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
